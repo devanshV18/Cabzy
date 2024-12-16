@@ -5,7 +5,7 @@ import cors from 'cors'
 const app = express()
 
 config({
-    path: "./config/config.env"
+    path: "./.env"
 })
 
 app.use(cors({
