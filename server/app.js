@@ -2,7 +2,7 @@ import { config } from "dotenv";
 import express from 'express'
 import cors from 'cors'
 import connectDB from "./db/connectDB.js";
-
+import userRouter from "./routes/userRoutes.js"
 const app = express()
 
 config({
@@ -15,9 +15,11 @@ app.use(cors({
     credentials: true
 }))
 
-app.get('/', (req,res) => {
-    res.send("<h1>Server Testing</h1>")
-})
+app.use(express.json())
+app.use(express.urlencoded({extended : true}))
+
+
+app.use("/api/users", userRouter)
 
 connectDB()
 

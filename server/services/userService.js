@@ -13,4 +13,6 @@ export const createUser = async ({firstname, lastname, email, password}) => {
         email,
         password
     })
+
+    return user
 }
