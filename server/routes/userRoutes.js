@@ -2,7 +2,7 @@ import express from "express"
 const router = express.Router()
 import { body } from "express-validator"
 import { loginUser, registerUser, getUserProfile } from "../controllers/userController.js"
-import { authUser } from "../middlewares/auth.middleware.js"
+import { authUser } from "../middlewares/authMiddleware.js"
 
 
 //register
