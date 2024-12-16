@@ -72,3 +72,7 @@ export const loginUser = async (req,res,next) => {
         token
     })
 }
+
+export const getUserProfile = async(req,res,next) => {
+    res.status(200).json(req.user)
+}
