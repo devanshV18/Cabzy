@@ -1,7 +1,7 @@
 import express from "express"
 const router = express.Router()
 import { body } from "express-validator"
-import { loginUser, registerUser, getUserProfile } from "../controllers/userController.js"
+import { loginUser, registerUser, getUserProfile, logoutUser } from "../controllers/userController.js"
 import { authUser } from "../middlewares/authMiddleware.js"
 
 
@@ -18,7 +18,9 @@ router.post('/login', [
     body('password').isLength({min : 6}).withMessage("Invalid Password")
 ], loginUser)
 
+//profile
 router.get('/profile', authUser, getUserProfile)
 
+router.get('/logout', authUser, logoutUser)
 
 export default router

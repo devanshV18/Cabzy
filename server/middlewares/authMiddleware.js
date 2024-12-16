@@ -1,6 +1,7 @@
 import { userModel } from '../models/userModel.js';
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
+import { blacklistTokenModel } from '../models/blackListTokenModel.js';
 
 
 
@@ -11,6 +12,15 @@ export const authUser = async (req, res, next) => {
     //if no token means not authorised
     if (!token) {
         return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    //checking for logout
+    const isBlacklisted = await blacklistTokenModel.findOne({token: token})
+
+    if(isBlacklisted){
+        return res.status(401).json({
+            message: "Unauthorised"
+        })
     }
 
     try {
