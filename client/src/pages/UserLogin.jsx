@@ -55,7 +55,7 @@ const UserLogin = () => {
 
       </form>
 
-      <p className='text-center font-medium'>New Here? <Link to='/signup' className='text-black font-medium'>Register</Link></p>
+      <p className='text-center font-medium'>New Here? <Link to='/signup' className='text-black font-medium text-blue-500'>Register</Link></p>
 
       </div>
 
