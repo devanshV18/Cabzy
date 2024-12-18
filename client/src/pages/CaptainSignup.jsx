@@ -14,7 +14,7 @@ const CaptainSignup = () => {
       e.preventDefault()
   
       setUserData({
-        username: {
+        fullName: {
           firstName: firstName,
           lastName: lastName
         },
@@ -33,15 +33,15 @@ const CaptainSignup = () => {
     <div>
       <div className='p-7 h-screen flex flex-col justify-between'>
       <div>
-      <Link to='/'>
-      <img className='w-16 mb-10' src='https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png'/>
-      </Link>
+        <Link to='/'>
+            <img className='w-16 mb-10' src='https://pngimg.com/d/uber_PNG24.png'/>
+        </Link>
 
       <form onSubmit={(e) => {
         submitHandler(e)
       }}>
 
-        <h3 className='text-lg font-medium mb-2'>What should we call you?</h3>
+        <h3 className='text-lg font-medium mb-2'>What should we call you captain?</h3>
 
         <div className='flex gap-4 mb-6'>
         <input 
@@ -89,7 +89,7 @@ const CaptainSignup = () => {
 
       </form>
 
-      <p className='text-center font-medium'>Have an Account? <Link to='/login' className='text-black font-medium text-blue-500'>Login</Link></p>
+      <p className='text-center font-medium'>Already a Captain? <Link to='/captain-login' className='text-black font-medium text-blue-500'>Login</Link></p>
 
       </div>
 
