@@ -1,6 +1,9 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import axios from 'axios'
+import { UserDataContext } from '../context/UserContext.jsx'
+
 
 const UserSignup = () => {
 
@@ -8,25 +11,45 @@ const UserSignup = () => {
   const [password, setPassword] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-  const [userData, setUserData] = useState({})
+  // const [userData, setUserData] = useState({})
 
-  const submitHandler = (e) =>{
+
+  const navigateTo = useNavigate()
+  const {user, setUser} = useContext(UserDataContext)
+
+  const submitHandler = async(e) =>{
     e.preventDefault()
 
-    setUserData({
-      fullName: {
-        firstName: firstName,
-        lastName: lastName
+    const newUser = {
+      fullname: {
+        firstname: firstName,
+        lastname: lastName
       },
       email: email,
       password: password
-    })
-    console.log(userData)
+    }
+
+    const response = await axios.post(
+      'http://localhost:5000/api/users/register',
+      newUser
+    )
+
+    if(response.status == 201){
+      // console.log(response)
+      const data = response.data
+      setUser(data.user)
+      localStorage.setItem('token', data.token)
+      navigateTo('/home')
+    }
+
     setEmail('')
     setPassword('')
     setFirstName('')
     setLastName('')
   }
+
+
+
 
   return (
     <div>
@@ -36,9 +59,7 @@ const UserSignup = () => {
       <img className='w-16 mb-10' src='https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png'/>
       </Link>
 
-      <form onSubmit={(e) => {
-        submitHandler(e)
-      }}>
+      <form onSubmit={submitHandler}>
 
         <h3 className='text-lg font-medium mb-2'>What should we call you?</h3>
 

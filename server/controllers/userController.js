@@ -105,8 +105,3 @@ export const logoutUser = async(req,res,next) => {
     })
 }
 
-export const test = async(req,res,next) => {
-    res.status(200).json({
-        message: "works well"
-    })
-}
