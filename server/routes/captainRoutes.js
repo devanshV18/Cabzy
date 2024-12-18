@@ -1,6 +1,6 @@
 import express, { Router } from "express"
 import { body } from "express-validator"
-import { getCaptainProfile, registerCaptain, loginCaptain, logoutCaptain } from "../controllers/captainController.js"
+import { getCaptainProfile, registerCaptain, loginCaptain, logoutCaptain} from "../controllers/captainController.js"
 import { authCaptain } from "../middlewares/authMiddleware.js"
 const router = express.Router()
 
@@ -30,4 +30,4 @@ router.get('/profile', authCaptain, getCaptainProfile)
 router.get('/logout', logoutCaptain)
 
 
-export default Router
+export default router

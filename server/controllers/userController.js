@@ -12,6 +12,7 @@ export const registerUser = async (req,res,next) => {
         })
     }
 
+    try {
     const {fullname, email, password} = req.body
 
     const isUserAlready = await userModel.findOne({ email });
@@ -37,6 +38,11 @@ export const registerUser = async (req,res,next) => {
         user,
         token
     })
+    } catch (error) {
+      return res.status(500).json({
+        message: "Something went wrong"
+      })  
+    }
 }
 
 export const loginUser = async (req,res,next) => {
@@ -47,7 +53,8 @@ export const loginUser = async (req,res,next) => {
         })
     }
 
-    const {email, password} = req.body
+    try {
+        const {email, password} = req.body
 
     const user = await userModel.findOne({email}).select('+password')
 
@@ -74,6 +81,11 @@ export const loginUser = async (req,res,next) => {
         user,
         token
     })
+    } catch (error) {
+      return res.status(400).json({
+        message: "Something went wrong ! Please try again."
+      })  
+    }
 }
 
 export const getUserProfile = async(req,res,next) => {
@@ -90,5 +102,11 @@ export const logoutUser = async(req,res,next) => {
 
     res.status(200).json({
         message: "User Logged Out"
+    })
+}
+
+export const test = async(req,res,next) => {
+    res.status(200).json({
+        message: "works well"
     })
 }

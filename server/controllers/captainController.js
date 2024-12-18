@@ -5,12 +5,14 @@ import { blacklistTokenModel } from "../models/blackListTokenModel.js";
 
 
 export const registerCaptain = async(req, res, next) => {
+    console.log("controller invoked")
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { fullname, email, password, vehicle } = req.body;
+    try {
+        const { fullname, email, password, vehicle } = req.body;
 
     const isCaptainAlreadyExist = await captainModel.findOne({ email });
 
@@ -21,7 +23,7 @@ export const registerCaptain = async(req, res, next) => {
 
     const hashedPassword = await captainModel.hashPassword(password);
 
-    const captain = await captainService.createCaptain({
+    const captain = await createCaptain({
         firstname: fullname.firstname,
         lastname: fullname.lastname,
         email,
@@ -32,6 +34,7 @@ export const registerCaptain = async(req, res, next) => {
         vehicleType: vehicle.vehicleType
     });
 
+
     const token = captain.generateAuthToken();
 
     res.status(201).json({ 
@@ -39,6 +42,11 @@ export const registerCaptain = async(req, res, next) => {
         token, 
         captain 
     });
+    } catch (error) {
+       return res.status(500).json({
+        message: "An error occured"
+       }) 
+    }
 }
 
 export const loginCaptain = async(req,res,next) => {
@@ -47,7 +55,8 @@ export const loginCaptain = async(req,res,next) => {
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { email, password } = req.body;
+    try {
+        const { email, password } = req.body;
 
     const captain = await captainModel.findOne({ email }).select('+password');
 
@@ -65,7 +74,15 @@ export const loginCaptain = async(req,res,next) => {
 
     res.cookie('token', token);
 
-    res.status(200).json({ token, captain });
+    res.status(200).json({ 
+        message: 'Captain Logged In',
+        token, 
+        captain });
+    } catch (error) {
+        return res.status(500).json({
+            message: "Something went wrong! Try Again"
+        })
+    }
 }
 
 export const getCaptainProfile = async(req,res,next) => {
@@ -81,3 +98,4 @@ export const logoutCaptain = async(req,res,next) => {
         message: "Captain Logged Out!"
     })
 }
+
