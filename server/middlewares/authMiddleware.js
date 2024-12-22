@@ -15,7 +15,7 @@ export const authUser = async (req, res, next) => {
         return res.status(401).json({ message: 'Unauthorized' });
     }
 
-    //checking for logout
+    //checking for  -> if token is blacklisted it means that the user is logged out
     const isBlacklisted = await blacklistTokenModel.findOne({token: token})
 
     if(isBlacklisted){
@@ -26,8 +26,9 @@ export const authUser = async (req, res, next) => {
 
     try {
 
+        //decoding means getting back the elements which forms the token
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = await userModel.findById(decoded._id)
+        req.user = await userModel.findById(decoded._id) //getting current user details by decoding the doc id of the current user
 
         next();
 
