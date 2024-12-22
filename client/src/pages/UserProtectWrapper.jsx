@@ -17,7 +17,8 @@ const UserProtectWrapper = ({children}) => {
 
   return (
     <>
-      {children}
+      {/* return the protected route */}
+      {children} 
     </>
   )
 }
