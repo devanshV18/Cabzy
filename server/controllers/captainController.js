@@ -5,7 +5,6 @@ import { blacklistTokenModel } from "../models/blackListTokenModel.js";
 
 
 export const registerCaptain = async(req, res, next) => {
-    console.log("controller invoked")
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });

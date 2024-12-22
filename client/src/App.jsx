@@ -9,6 +9,8 @@ import Home from './pages/Home'
 import UserProtectWrapper from './pages/UserProtectWrapper'
 import UserLogout from './pages/UserLogout'
 import Error from './pages/Error'
+import CaptainHome from './pages/CaptainHome'
+import CaptainProtectWrapper from './pages/CaptainProtectWrapper'
 
 const App = () => {
   return (
@@ -40,6 +42,15 @@ const App = () => {
         <Route
           path='/error'
           element = {<Error/>}
+        />
+        <Route
+          path='/captain-home'
+          element = 
+          {
+            <CaptainProtectWrapper>
+              <CaptainHome/>
+            </CaptainProtectWrapper>
+          }
         />
       </Routes>
     </div>
