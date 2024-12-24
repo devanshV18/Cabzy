@@ -25,12 +25,15 @@ const CaptainProtectWrapper = ({children}) => {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
-            }).then(response => {
+            }
+            )
+            .then(response => {
                 if(response.status == 200){
                     setCaptain(response.data.captain)
                     setIsLoading(false)
                 }
-            }).catch( err => {
+            })
+            .catch( err => {
                 localStorage.removeItem('token')
                 navigate('/captain-login')
             })
