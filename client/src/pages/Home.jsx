@@ -60,9 +60,7 @@ const Home = () => {
     <div className='h-screen relative overflow-hidden'>
       <img className='w-16 absolute left-5 top-5' src='https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png' alt=''/>
 
-      <div className='h-screen w-screen'
-        onClick={() => setVehiclePanelOpen(false)}
-      >
+      <div className='h-screen w-screen'>
         {/* temporary image for now */}
         <img className='h-full w-full object-cover' src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif" alt=''/>
         {/* <LiveTracking/> */}
