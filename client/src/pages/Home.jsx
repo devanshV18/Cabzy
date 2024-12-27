@@ -13,10 +13,10 @@ const Home = () => {
   const [pickUpLocation, setPickUpLocation] = useState('')
   const [destination, setDestination] = useState('')
   const [panelOpen, setPanelOpen] = useState(false)
+  const vehiclePanelRef = useRef(null)
   const panelRef = useRef(null)
   const panelCloseRef = useRef(null)
-  const [vehiclePanelOpen, setVehiclePanelOpen] = useState(false)
-  const vehiclePanelRef = useRef(null)
+  const [vehiclePanel, setvehiclePanel] = useState(false)
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -43,16 +43,16 @@ const Home = () => {
   }, [panelOpen])
 
   useGSAP(function(){
-    if(vehiclePanelOpen){
+    if(vehiclePanel){
       gsap.to(vehiclePanelRef.current, {
         transform: 'translateY(0)'
       })
     }else{
       gsap.to(vehiclePanelRef.current, {
-        transform: 'translateY(100)'
+        transform: 'translateY(100%)'
       })
     }
-  }, [vehiclePanelOpen])
+  }, [vehiclePanel])
 
 
 
@@ -99,12 +99,22 @@ const Home = () => {
         </div>
 
         <div ref={panelRef} className='bg-white h-0'>
-          <LocationSearchPanel setPanelOpen={setPanelOpen} setVehiclePanelOpen = {setVehiclePanelOpen}/>
+          <LocationSearchPanel setPanelOpen={setPanelOpen} setvehiclePanel = {setvehiclePanel}/>
         </div>
 
       </div>
 
-      <div ref={vehiclePanelRef} className='fixed w-full z-10 bottom-0 translate-y-full p-3 bg-white px-3 py-6'>
+      <div ref={vehiclePanelRef} className='fixed w-full z-10 bottom-0 translate-y-full p-3 bg-white px-3 py-10 pt-14'>
+        <h5 
+        className='p-1 text-center absolute top-0 w-[93%]'
+        onClick={() => {
+          setvehiclePanel(false)
+          console.log(vehiclePanel)
+        }}
+        >
+          <i className="ri-arrow-down-wide-line"></i>
+        </h5>
+
         <h3 className='text-2xl font-semibold mb-5'>Choose a Ride</h3>
 
         <div className='flex w-full border-2 active:border-black rounded-xl p-3 items-center justify-between mb-2'>
