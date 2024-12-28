@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ConfirmRide = (props) => {
+const LookingForDriver = () => {
   return (
     <div>
         <h5 
@@ -12,7 +12,7 @@ const ConfirmRide = (props) => {
           <i className="ri-arrow-down-wide-line"></i>
         </h5>
 
-        <h3 className='text-2xl font-semibold mb-5'>Confirm your Ride</h3>
+        <h3 className='text-2xl font-semibold mb-5'>Looking For Nearby Drivers</h3>
 
         <div className='flex gap-2 flex-col justify-between items-center'>
             
@@ -42,14 +42,10 @@ const ConfirmRide = (props) => {
                     </div>
                 </div>
             </div>
-
-            <button onClick={() => {
-                props.setVehicleFound(true)
-            }} className='w-full bg-green-600 text-white font-semibold p-2 rounded-lg mt-5'>Confirm</button>
         </div>
 
     </div>
   )
 }
 
-export default ConfirmRide
+export default LookingForDriver
