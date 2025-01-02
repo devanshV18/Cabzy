@@ -3,11 +3,11 @@ import React from 'react'
 const VehiclePanel = (props) => {
   return (
     <div>
-      <h5 
-        className='p-1 text-center absolute top-0 w-[93%]'
-        onClick={() => {
-          props.setvehiclePanel(false)
-        }}
+        <h5 
+          className='p-1 text-center absolute top-0 w-[93%]'
+          onClick={() => {
+            props.setvehiclePanel(false)
+          }}
         >
           <i className="ri-arrow-down-wide-line"></i>
         </h5>
