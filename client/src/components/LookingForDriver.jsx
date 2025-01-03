@@ -5,11 +5,12 @@ const LookingForDriver = (props) => {
     <div>
       <h5 
         className='p-1 text-center absolute top-0 w-[93%]'
+        onClick={() => props.setVehicleFound(false)}
       >
         <i className="ri-arrow-down-wide-line"></i>
       </h5>
 
-      <h3 className='text-2xl font-semibold mb-5'>Lookin for a Driver</h3>
+      <h3 className='text-2xl font-semibold mb-5'>Looking for a Driver</h3>
 
       <div className='flex flex-col gap-2 justify-between items-center'>
         <img className='h-20' src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_538,w_956/v1646663215/assets/6e/e50c1b-2174-4c97-83a1-bfd4544689d0/original/uberX.png" alt="" />
@@ -44,7 +45,7 @@ const LookingForDriver = (props) => {
     </div>
 
 
-</div>
+    </div>
   )
 }
 
