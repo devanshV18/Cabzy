@@ -138,6 +138,7 @@ const Home = () => {
 
             <input
             className='bg-[#eee] px-12 py-2 text-base rounded-lg w-full mt-3'
+            onClick={() => setPanelOpen(true)}
             placeholder='Enter Destination'
             type='text'
             value={destination}

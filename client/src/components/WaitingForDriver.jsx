@@ -31,24 +31,26 @@ const WaitingForDriver = (props) => {
                 </div>
             </div>
 
+            <div className='flex items-center gap-5 p-3'>
+              <i className="ri-map-pin-fill"></i>
+                <div>
+                    <h3 className='text-lg font-medium'>M303 Abode Valley</h3>
+                    <p className='text-sm -mt-1 text-gray-600'>52 Kakkan Street, Potheri</p>
+                </div>
+            </div>
+
             <div className='flex items-center gap-5 p-3 border-b-2'>
-                <i className="ri-map-pin-fill"></i>
+                <i className="ri-bank-card-2-fill"></i>
                 <div>
                     <h3 className='text-lg font-medium'>₹193.20</h3>
                     <p className='text-sm -mt-1 text-gray-600'>Cash Only</p>
                 </div>
             </div>
 
-            <div className='flex items-center gap-5 p-3'>
-                <i className="ri-bank-card-2-fill"></i>
-                <div>
-                    <h3 className='text-lg font-medium'>M303 Abode Valley</h3>
-                    <p className='text-sm -mt-1 text-gray-600'>52 Kakkan Street, Potheri</p>
-                </div>
-            </div>
+            
         </div>
 
-    </div>
+      </div>
 
 
     </div>
