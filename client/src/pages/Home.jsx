@@ -11,6 +11,7 @@ import ConfirmRide from '../components/ConfirmRide'
 import LookingForDriver from '../components/LookingForDriver'
 
 
+
 const Home = () => {
 
   const [pickUpLocation, setPickUpLocation] = useState('')
@@ -142,7 +143,11 @@ const Home = () => {
       </div>
 
       <div ref={confirmRidePanelRef} className='fixed w-full z-10 bottom-0 translate-y-full p-3 bg-white px-3 py-6 pt-12'>
-        <ConfirmRide setConfirmRidePanel = {setConfirmRidePanel} />
+        <ConfirmRide setConfirmRidePanel = {setConfirmRidePanel} setVehicleFound = {setVehicleFound} />
+      </div>
+
+      <div ref={vehicleFoundRef} className='fixed w-full z-10 bottom-0 translate-y-full p-3 bg-white px-3 py-6 pt-12'>
+        <LookingForDriver/>
       </div>
 
     </div>
