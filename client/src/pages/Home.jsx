@@ -129,7 +129,7 @@ const Home = () => {
             <div className="line absolute h-16 w-1 top-[45%] left-10 bg-gray-700 rounded-full"></div>
             <input
             onClick={() => setPanelOpen(true)}
-            className='bg-[#eee] px-12 py-2 text-base rounded-lg w-full mt-5'
+            className='bg-[#eee] px-12 py-2 text-base rounded-lg w-full'
             placeholder='Enter Pick-Up Location'
             type='text'
             value={pickUpLocation}
