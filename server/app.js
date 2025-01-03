@@ -4,6 +4,7 @@ import cors from 'cors'
 import connectDB from "./db/connectDB.js";
 import userRouter from "./routes/userRoutes.js"
 import captainRouter from "./routes/captainRoutes.js"
+import mapRouter from "./routes/mapRoutes.js"
 import cookieParser from "cookie-parser";
 const app = express()
 
@@ -23,6 +24,7 @@ app.use(express.urlencoded({extended : true}))
 
 app.use("/api/users", userRouter)
 app.use("/api/captains", captainRouter)
+app.use("/api/maps", mapRouter)
 
 connectDB()
 
