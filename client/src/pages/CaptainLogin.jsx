@@ -21,7 +21,7 @@ const CaptainLogin = () => {
       }
 
       const response = await axios.post(
-        'http://localhost:5000/api/captains/login',
+        'http://localhost:5005/api/captains/login',
         captainCredentials
       )
 

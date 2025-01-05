@@ -14,7 +14,7 @@ const CaptainLogout = () => {
                 return
             }
             try {
-                const response = await axios.get('http://localhost:5000/api/captains/logout', {
+                const response = await axios.get('http://localhost:5005/api/captains/logout', {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

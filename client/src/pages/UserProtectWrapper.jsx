@@ -17,7 +17,7 @@ const UserProtectWrapper = ({children}) => {
             navigate('/login')
         }
 
-        axios.get('http://localhost:5000/api/users/profile',
+        axios.get('http://localhost:5005/api/users/profile',
           {
             headers: {
               Authorization: `Bearer ${token}`

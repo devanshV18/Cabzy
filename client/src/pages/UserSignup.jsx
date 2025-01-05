@@ -30,7 +30,7 @@ const UserSignup = () => {
     }
 
     const response = await axios.post(
-      'http://localhost:5000/api/users/register',
+      'http://localhost:5005/api/users/register',
       newUser
     )
 

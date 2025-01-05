@@ -20,7 +20,7 @@ const CaptainProtectWrapper = ({children}) => {
         }
 
         axios.get(
-            'http://localhost:5000/api/captains/profile',
+            'http://localhost:5005/api/captains/profile',
             {
                 headers: {
                     Authorization: `Bearer ${token}`

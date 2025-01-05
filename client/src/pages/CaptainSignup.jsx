@@ -37,7 +37,7 @@ const CaptainSignup = () => {
     }
 
     const response = await axios.post(
-      'http://localhost:5000/api/captains/register',
+      'http://localhost:5005/api/captains/register',
       captainData
     )
 
