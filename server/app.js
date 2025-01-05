@@ -5,6 +5,7 @@ import connectDB from "./db/connectDB.js";
 import userRouter from "./routes/userRoutes.js"
 import captainRouter from "./routes/captainRoutes.js"
 import mapRouter from "./routes/mapRoutes.js"
+import rideRouter from './routes/rideRoutes.js'
 import cookieParser from "cookie-parser";
 const app = express()
 
@@ -25,6 +26,7 @@ app.use(express.urlencoded({extended : true}))
 app.use("/api/users", userRouter)
 app.use("/api/captains", captainRouter)
 app.use("/api/maps", mapRouter)
+app.use("/api/rides", rideRouter)
 
 connectDB()
 

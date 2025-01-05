@@ -58,7 +58,7 @@ const CaptainSignup = () => {
     setVehicleType('')
   };
 
-  const vehicleTypes = ['Car', 'Auto', 'Motorcycle'];
+  const vehicleTypes = ['car', 'auto', 'motorcycle'];
 
   return (
     <div>
