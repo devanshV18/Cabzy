@@ -11,6 +11,8 @@ export const createARide = async (req, res, next) => {
 
     const { userId, pickup, destination, vehicleType } = req.body;
 
+    console.log("log1", vehicleType)
+
     try {
         const ride = await createRide({ user: req.user._id, pickup, destination, vehicleType });
         return res.status(201).json({

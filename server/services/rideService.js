@@ -25,15 +25,15 @@ export const getFare = async(pickup, destination) => {
         const perMinuteRate = {
             auto: 2,
             car: 3,
-            motorcycle: 1.5
+            motorcycle: 1
         }
     
-        console.log(distanceTime)
+        // console.log(distanceTime)
     
         const fare = {
             auto: Math.round(baseFare.auto + ((distanceTime.distance.value / 1000) * perKmRate.auto) + ((distanceTime.duration.value / 60) * perMinuteRate.auto)),
             car: Math.round(baseFare.car + ((distanceTime.distance.value / 1000) * perKmRate.car) + ((distanceTime.duration.value / 60) * perMinuteRate.car)),
-            motorcycle: Math.round(baseFare.moto + ((distanceTime.distance.value / 1000) * perKmRate.moto) + ((distanceTime.duration.value / 60) * perMinuteRate.moto))
+            moto: Math.round(baseFare.motorcycle + ((distanceTime.distance.value / 1000) * perKmRate.motorcycle) + ((distanceTime.duration.value / 60) * perMinuteRate.motorcycle))
         };
     
         return fare
@@ -51,15 +51,19 @@ export const createRide = async ({ user, pickup, destination, vehicleType }) => 
             throw new Error("All fields are necessary");
         }
 
+        console.log("log2", vehicleType)
+
+
         // Calculate fare
         const fare = await getFare(pickup, destination);
+        console.log(fare)
 
         // Create the ride
         const ride = await rideModel.create({
             user,
             pickup,
             destination,
-            fare: fare[vehicleType],
+            fare: fare[vehicleType]
         });
 
         return ride;
