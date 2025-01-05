@@ -1,5 +1,6 @@
 import { rideModel } from "../models/rideModel.js";
 import { getDistanceTime } from "./mapsService.js";
+import crypto from "crypto"
 
 
 export const getFare = async(pickup, destination) => {
@@ -56,6 +57,8 @@ export const createRide = async ({ user, pickup, destination, vehicleType }) => 
 
         // Calculate fare
         const fare = await getFare(pickup, destination);
+      
+
         console.log(fare)
 
         // Create the ride
@@ -63,7 +66,8 @@ export const createRide = async ({ user, pickup, destination, vehicleType }) => 
             user,
             pickup,
             destination,
-            fare: fare[vehicleType]
+            fare: fare[vehicleType],
+            otp: getOtp(6)
         });
 
         return ride;
@@ -73,3 +77,12 @@ export const createRide = async ({ user, pickup, destination, vehicleType }) => 
         throw error;
     }
 };
+
+function getOtp(num) {
+    function generateOtp(num) {
+        const otp = crypto.randomInt(Math.pow(10, num - 1), Math.pow(10, num)).toString();
+        return otp;
+    }
+    return generateOtp(num);
+}
+
