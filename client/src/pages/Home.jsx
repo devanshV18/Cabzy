@@ -140,6 +140,8 @@ const Home = () => {
     }
   }, [waitingForDriver])
 
+
+
   async function findTrip() {
     setvehiclePanel(true)
     setPanelOpen(false)
@@ -160,18 +162,26 @@ const Home = () => {
     }
 };
 
-  // const createRide = async() => {
-  //   const response = await axios.post('http://localhost:5005/api/rides/create', {
-  //     pickup,
-  //     destination,
-  // }, {
-  //     headers: {
-  //         Authorization: `Bearer ${localStorage.getItem('token')}`
-  //     }
-  // })
+async function createRide(){
 
-  // console.log(response)
-  // }
+ try {
+    const response = await axios.post("http://localhost:5005/api/rides/create", {
+      pickup,
+      destination,
+      vehicleType
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    }
+  )
+
+  console.log("Create ride response", response) //reponse->data->message(direct) and (ride object for descriptive information)
+ } catch (error) {
+    console.log("Create Ride Frontend error", error)
+ }
+}
 
 
   return (
@@ -252,6 +262,7 @@ const Home = () => {
         setConfirmRidePanel = {setConfirmRidePanel} 
         setvehiclePanel = {setvehiclePanel}
         fare = {fare}
+        selectVehicle = {setVehicleType}
         />
       </div>
 
@@ -259,12 +270,24 @@ const Home = () => {
         <ConfirmRide 
         setConfirmRidePanel = {setConfirmRidePanel} 
         setVehicleFound = {setVehicleFound}
+        createRide = {createRide}
+        pickup={pickup}
+        destination={destination}
+        vehicleType = {vehicleType}
+        fare = {fare}
         />
         
       </div>
 
       <div ref={vehicleFoundRef} className='fixed w-full z-10 bottom-0 translate-y-full p-3 bg-white px-3 py-6 pt-12'>
-        <LookingForDriver setVehicleFound={setVehicleFound}/>
+        <LookingForDriver 
+        setVehicleFound={setVehicleFound}
+        createRide = {createRide}
+        pickup={pickup}
+        destination={destination}
+        vehicleType = {vehicleType}
+        fare = {fare}
+        />
       </div>
 
       <div ref={waitingForDriverRef} className='fixed w-full z-10 bottom-0 p-3 bg-white px-3 py-6 pt-12'>
