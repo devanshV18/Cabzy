@@ -154,7 +154,7 @@ const Home = () => {
         })
         // console.log(response) //structure -> response.data.car/auto/moto
         setFare(response.data)  
-        // console.log("State fare", fare)
+        console.log("State fare", fare)
     } catch (error) {
       console.log("Frontend fare error", error)
     }
@@ -251,6 +251,7 @@ const Home = () => {
         <VehiclePanel 
         setConfirmRidePanel = {setConfirmRidePanel} 
         setvehiclePanel = {setvehiclePanel}
+        fare = {fare}
         />
       </div>
 

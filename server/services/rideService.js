@@ -53,7 +53,7 @@ export const getFare = async (pickup, destination) => {
 
         return fare;
     } catch (error) {
-        // console.error('Error calculating fare:', error.message);
+        console.error('Error calculating fare:', error.message);
         throw new Error('Failed to calculate fare. Please try again later.');
     }
 };

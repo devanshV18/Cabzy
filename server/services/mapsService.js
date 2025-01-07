@@ -48,10 +48,11 @@ export const getDistanceTime = async (origin, destination) => {
             throw new Error(`Google Maps API error: ${response.data.status}`);
         }
     } catch (error) {
-        // console.error('Error occurred while fetching distance and time:', error.message);
+        console.error('Error occurred while fetching distance and time:', error.message);
         throw new Error('Failed to fetch distance and time from Google Maps API');
     }
 };
+
 
 
 export const getSuggestion = async (input) => {

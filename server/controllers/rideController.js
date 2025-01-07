@@ -37,7 +37,7 @@ export const getRideFare = async (req, res, next) => {
         const fare = await getFare(pickup, destination);
         return res.status(200).json(fare);
     } catch (error) {
-        // console.error('Get fare error:', error.message);
+        console.error('Get fare error:', error.message);
         return res.status(500).json({ message: error.message });
     }
 };
