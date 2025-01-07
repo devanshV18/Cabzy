@@ -140,7 +140,7 @@ const Home = () => {
     }
   }, [waitingForDriver])
 
-  const findTrip = async() => {
+  async function findTrip() {
     setvehiclePanel(true)
     setPanelOpen(false)
 
