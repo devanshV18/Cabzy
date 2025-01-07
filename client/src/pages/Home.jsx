@@ -141,24 +141,23 @@ const Home = () => {
   }, [waitingForDriver])
 
   const findTrip = async() => {
-    const tokenPrint = localStorage.getItem('token')
-    console.log(tokenPrint)
+    setvehiclePanel(true)
+    setPanelOpen(false)
 
     try {
       const response = await axios.get("http://localhost:5005/api/rides/get-fare", 
-      {
-        params: {pickup, destination},
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      })
-      console.log(response) //structure -> response.data.car/auto/moto
+        {
+          params: {pickup, destination},
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        })
+        // console.log(response) //structure -> response.data.car/auto/moto
+        setFare(response.data)  
+        // console.log("State fare", fare)
     } catch (error) {
-      console.log("Error in frontend for getfare", error)
+      console.log("Frontend fare error", error)
     }
-
-    setvehiclePanel(true)
-    setPanelOpen(false)
 };
 
   // const createRide = async() => {
@@ -249,7 +248,9 @@ const Home = () => {
 
 
       <div ref={vehiclePanelRef} className='fixed w-full z-10 bottom-0 translate-y-full p-3 bg-white px-3 py-10 pt-12'>
-        <VehiclePanel setConfirmRidePanel = {setConfirmRidePanel} setvehiclePanel = {setvehiclePanel}/>
+        <VehiclePanel 
+        setConfirmRidePanel = {setConfirmRidePanel} 
+        setvehiclePanel = {setvehiclePanel}/>
       </div>
 
       <div ref={confirmRidePanelRef} className='fixed w-full z-10 bottom-0 translate-y-full p-3 bg-white px-3 py-6 pt-12'>
