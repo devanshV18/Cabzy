@@ -19,8 +19,8 @@ router.get("/get-distance-time",
 )
 
 router.get("/get-suggestions", 
-    query('input').isString().isLength({ min: 3}),
     authUser,
+    query('input').isString().isLength({ min: 3}),
     suggestion
 )
 

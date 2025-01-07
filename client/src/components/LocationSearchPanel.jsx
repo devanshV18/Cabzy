@@ -1,38 +1,37 @@
-import React from 'react'
+import React from 'react';
 
-const LocationSearchPanel = (props) => {
+const LocationSearchPanel = ({ setPanelOpen, setVehiclePanel, suggestions, setPickUpLocation, setDestination, activeField }) => {
 
-    const locations = [
-        "24B, Near Abode Valley, M303 Chennai",
-        "24B, Near Estancia towers, M303 Chennai",
-        "24B, Near VGN Southern Avenue, M303 Chennai",
-        "24B, Near DCC Aishwarya, M303 Chennai"
-    ]
+  const handleSuggestionClick = (suggestion) => {
+    if (activeField === 'pickup') {
+      setPickUpLocation(suggestion.structured_formatting.main_text);
+    } else if (activeField === 'destination') {
+      setDestination(suggestion.structured_formatting.main_text);
+    }
+    setVehiclePanel(true);
+    setPanelOpen(false);
+  };
 
   return (
-
     <div>
-        {/* sample data */}
-        {
-            locations.map((location, index) => {
-                return(
-                <div onClick={() => {
-                    props.setvehiclePanel(true)
-                    props.setPanelOpen(false)
-                }} 
-                key={index} 
-                className='flex gap-4 border-2 p-3 rounded-xl items-center justify-start my-2 border-gray-100 active:border-black'
-                > 
-                    <h2 className='text-black bg-[#eee] h-8 w-12 flex items-center justify-center rounded-full'><i className="ri-map-pin-2-fill"></i></h2>
-                    <h4 className='text-lg'>{location}</h4>
-                </div>
-                )
-            })
-        }
-        
-        
+      {/* Display fetched suggestions */}
+      {suggestions.map((suggestion, idx) => (
+        <div
+          key={idx}
+          onClick={() => handleSuggestionClick(suggestion)}
+          className="flex gap-4 border-2 p-3 border-gray-50 active:border-black rounded-xl items-center my-2 justify-start cursor-pointer hover:bg-gray-100"
+        >
+          <div className="bg-[#eee] h-8 flex items-center justify-center w-12 rounded-full">
+            <i className="ri-map-pin-fill"></i>
+          </div>
+          <div>
+            <h4 className="font-medium">{suggestion.structured_formatting.main_text}</h4>
+            <p className="text-sm text-gray-500">{suggestion.structured_formatting.secondary_text}</p>
+          </div>
+        </div>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default LocationSearchPanel
+export default LocationSearchPanel;
