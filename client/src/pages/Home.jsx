@@ -4,7 +4,7 @@ import React, { useRef, useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import 'remixicon/fonts/remixicon.css'
 import ConfirmRide from '../components/ConfirmRide'
-import LocationSearchPanel from '../components/LOcationSearchPanel'
+import LocationSearchPanel from '../components/LocationSearchPanel'
 import LookingForDriver from '../components/LookingForDriver'
 import VehiclePanel from '../components/VehiclePanel'
 import WaitingForDriver from '../components/WaitingForDriver'
@@ -16,7 +16,7 @@ const Home = () => {
 
   const navigate = useNavigate()
 
-  const [pickUpLocation, setPickUpLocation] = useState('')
+  const [pickup, setpickup] = useState('')
   const [destination, setDestination] = useState('')
   const [panelOpen, setPanelOpen] = useState(false)
   const vehiclePanelRef = useRef(null)
@@ -37,7 +37,7 @@ const Home = () => {
   const [ ride, setRide ] = useState(null)
 
   const handlePickupChange = async(e) => {
-    setPickUpLocation(e.target.value)
+    setpickup(e.target.value)
     try {
       const response = await axios.get('http://localhost:5005/api/maps/get-suggestions', {
         params: {input: e.target.value},
@@ -54,7 +54,8 @@ const Home = () => {
   const handleDestinationChange = async(e) => {
     setDestination(e.target.value)
     try {
-      const response = await axios.get('http://localhost:5005/api/maps/get-suggestions', {
+      const response = await axios.get('http://localhost:5005/api/maps/get-suggestions', 
+      {
         params: {input: e.target.value},
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -140,26 +141,29 @@ const Home = () => {
   }, [waitingForDriver])
 
   const findTrip = async() => {
-    console.log("PickUpLocation:", pickUpLocation);
-    console.log("Destination:", destination);
+    const tokenPrint = localStorage.getItem('token')
+    console.log(tokenPrint)
 
-    setvehiclePanel(true);
-    setPanelOpen(false);
+    try {
+      const response = await axios.get("http://localhost:5005/api/rides/get-fare", 
+      {
+        params: {pickup, destination},
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      console.log(response) //structure -> response.data.car/auto/moto
+    } catch (error) {
+      console.log("Error in frontend for getfare", error)
+    }
 
-    const response = await axios.get('http://localhost:5005/api/rides/get-fare', {
-      params: { pickUpLocation, destination },
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-      }
-    });
-
-    console.log("Fare", response);
-    // setFare(response);
+    setvehiclePanel(true)
+    setPanelOpen(false)
 };
 
   // const createRide = async() => {
   //   const response = await axios.post('http://localhost:5005/api/rides/create', {
-  //     pickUpLocation,
+  //     pickup,
   //     destination,
   // }, {
   //     headers: {
@@ -204,7 +208,7 @@ const Home = () => {
             className='bg-[#eee] px-12 py-2 text-base rounded-lg w-full'
             placeholder='Enter Pick-Up Location'
             type='text'
-            value={pickUpLocation}
+            value={pickup}
             onChange={handlePickupChange}
             />
 
@@ -235,7 +239,7 @@ const Home = () => {
           setPanelOpen={setPanelOpen} 
           setvehiclePanel = {setvehiclePanel}
           suggestions={activeField === 'pickup' ? pickupSuggestions : destinationSuggestions}
-          setPickUpLocation={setPickUpLocation}
+          setpickup={setpickup}
           setDestination={setDestination}
           activeField={activeField}
           />

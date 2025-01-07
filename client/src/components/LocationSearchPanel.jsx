@@ -1,15 +1,14 @@
 import React from 'react';
 
-const LocationSearchPanel = ({ setPanelOpen, setVehiclePanel, suggestions, setPickUpLocation, setDestination, activeField }) => {
+const LocationSearchPanel = ({ setPanelOpen, setvehiclePanel, suggestions, setpickup, setDestination, activeField }) => {
 
   const handleSuggestionClick = (suggestion) => {
     if (activeField === 'pickup') {
-      setPickUpLocation(suggestion.structured_formatting.main_text);
+      setpickup(suggestion.structured_formatting.main_text);
     } else if (activeField === 'destination') {
       setDestination(suggestion.structured_formatting.main_text);
     }
-    setVehiclePanel(true);
-    setPanelOpen(false);
+    
   };
 
   return (
