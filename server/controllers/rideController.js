@@ -24,20 +24,20 @@ export const createARide = async (req, res, next) => {
     }
 };
 
-export const getRideFare = async(req,res,next) => {
-    const errors = validationResult(req)
+export const getRideFare = async (req, res, next) => {
+    const errors = validationResult(req);
 
-    if(!errors.isEmpty()){
-        return res.status(400).json({ errors: errors.array() })
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
     }
 
-    const {pickup, destination} = req.query
+    const { pickup, destination } = req.query;
 
     try {
-        const fare = await getFare(pickup, destination)
-        return res.status(200).json(fare)
+        const fare = await getFare(pickup, destination);
+        return res.status(200).json(fare);
     } catch (error) {
-        console.log("Get fare error", error)
-        return res.status(500).json({ message: error.message })
+        // console.error('Get fare error:', error.message);
+        return res.status(500).json({ message: error.message });
     }
-}
+};

@@ -26,30 +26,32 @@ export const getAddressCoordinate = async (address) => {
 };
 
 export const getDistanceTime = async (origin, destination) => {
-
     if (!origin || !destination) {
         throw new Error('Origin and destination are required');
     }
 
     const apiKey = process.env.GOOGLE_MAPS_API;
     const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${encodeURIComponent(origin)}&destinations=${encodeURIComponent(destination)}&key=${apiKey}`;
-    
-    
+
     try {
-    
         const response = await axios.get(url);
+        
         if (response.data.status === 'OK') {
-            if(response.data.rows[0].elements[0].status === 'ZERO_RESULTS'){
-                throw new Error('No results found');
+            const element = response.data.rows[0].elements[0];
+
+            if (element.status === 'ZERO_RESULTS') {
+                throw new Error('No route found between the origin and destination');
             }
-            return response.data.rows[0].elements[0]
+
+            return element; // Contains `distance` and `duration`
         } else {
-            throw new Error('Unable to fetch distance and time');
+            throw new Error(`Google Maps API error: ${response.data.status}`);
         }
     } catch (error) {
-        console.error('Error occurred while fetching distance and time',error);
+        // console.error('Error occurred while fetching distance and time:', error.message);
+        throw new Error('Failed to fetch distance and time from Google Maps API');
     }
-}
+};
 
 
 export const getSuggestion = async (input) => {

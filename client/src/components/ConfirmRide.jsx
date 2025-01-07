@@ -20,15 +20,14 @@ const ConfirmRide = (props) => {
                 <div className='flex items-center gap-5 p-3 border-b-2'>
                     <i className="text-lg ri-user-location-line"></i>
                     <div>
-                        <h3 className='text-lg font-medium'>M303 Abode Valley</h3>
-                        <p className='text-sm -mt-1 text-gray-600'>52 Kakkan Street, Potheri</p>
+                        <h3 className='text-lg font-medium'>{props.pickup}</h3>
                     </div>
                 </div>
 
                 <div className='flex items-center gap-5 p-3 border-b-2'>
                     <i className="ri-map-pin-fill"></i>
                     <div>
-                        <h3 className='text-lg font-medium'>₹193.20</h3>
+                        <h3 className='text-lg font-medium'>{props.fare}</h3>
                         <p className='text-sm -mt-1 text-gray-600'>Cash Only</p>
                     </div>
                 </div>
@@ -36,8 +35,7 @@ const ConfirmRide = (props) => {
                 <div className='flex items-center gap-5 p-3'>
                     <i className="ri-bank-card-2-fill"></i>
                     <div>
-                        <h3 className='text-lg font-medium'>M303 Abode Valley</h3>
-                        <p className='text-sm -mt-1 text-gray-600'>52 Kakkan Street, Potheri</p>
+                        <h3 className='text-lg font-medium'>{props.destination}</h3>
                     </div>
                 </div>
             </div>

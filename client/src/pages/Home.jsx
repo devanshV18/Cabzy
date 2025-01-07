@@ -250,11 +250,16 @@ const Home = () => {
       <div ref={vehiclePanelRef} className='fixed w-full z-10 bottom-0 translate-y-full p-3 bg-white px-3 py-10 pt-12'>
         <VehiclePanel 
         setConfirmRidePanel = {setConfirmRidePanel} 
-        setvehiclePanel = {setvehiclePanel}/>
+        setvehiclePanel = {setvehiclePanel}
+        />
       </div>
 
       <div ref={confirmRidePanelRef} className='fixed w-full z-10 bottom-0 translate-y-full p-3 bg-white px-3 py-6 pt-12'>
-        <ConfirmRide setConfirmRidePanel = {setConfirmRidePanel} setVehicleFound = {setVehicleFound} />
+        <ConfirmRide 
+        setConfirmRidePanel = {setConfirmRidePanel} 
+        setVehicleFound = {setVehicleFound}
+        />
+        
       </div>
 
       <div ref={vehicleFoundRef} className='fixed w-full z-10 bottom-0 translate-y-full p-3 bg-white px-3 py-6 pt-12'>
